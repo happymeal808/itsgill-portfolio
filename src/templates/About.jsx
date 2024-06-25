@@ -3,7 +3,7 @@ import Loading from '../utilities/Loading'
 import { restBase } from '../utilities/Utilities'
 
 const About = () => {
-    const restPath = restBase + ''
+    const restPath = restBase + 'pages/18'
     const [restData, setData] = useState([])
     const [isLoaded, setLoadStatus] = useState(false)
 
@@ -26,8 +26,17 @@ const About = () => {
         { isLoaded ?
             <article id={`post-${restData.id}`}>
                 <h1>{restData.title.rendered}</h1>
-                <div className="entry-content" dangerouslySetInnerHTML={{__html:restData.content.rendered}}>
+                <div>
+                {restData.acf.about_paragraph && 
+                    <p>{restData.acf.about_paragraph}</p>
+                }
                 </div>
+                {restData.acf.portrait && 
+                    <p>{restData.acf.portrait}</p>
+                }
+                {restData.acf.passion_project && 
+                    <p>{restData.acf.passion_project}</p>
+                }
             </article>
         : 
             <Loading />

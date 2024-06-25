@@ -10,9 +10,6 @@ function App() {
   return (
     <>
       <header id="masthead" className="site-header">
-        <div className="site-branding">
-          <p className="site-title">Gillian's Portfolio</p>
-        </div>
         <nav className="site-navigation">
           <ul>
             <li><NavLink to='/' end>Home</NavLink></li>
