@@ -221,7 +221,7 @@ input,
 select,
 textarea {
 	color: #404040;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 18px;
 	font-size: 1.125rem;
 	line-height: 1.5;
@@ -233,7 +233,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Maitree', sans-serif;
+	font-family: 'Overpass Mono', serif;
 	clear: both;
 }
 
@@ -618,3 +618,13 @@ footer p {
 	height: 300px;
 	object-fit: cover;
 }
+
+.fade-in {
+	opacity: 0;
+	transition: opacity 800ms ease;
+  }
+  
+  .fade-in.show {
+	opacity: 1;
+	transition: opacity 800ms ease;
+  }

@@ -1,40 +1,37 @@
-import { useState, useEffect } from 'react'
-import Loading from '../utilities/Loading'
-import { restBase } from '../utilities/Utilities'
+import { useState, useEffect } from 'react';
+import { restBase } from '../utilities/Utilities';
 
 const Home = () => {
-    const restPath = restBase + 'pages/14'
-    const [restData, setData] = useState([])
-    const [isLoaded, setLoadStatus] = useState(false)
+    const restPath = restBase + 'pages/14';
+    const [restData, setData] = useState(null);
+    const [isLoaded, setLoadStatus] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(restPath)
-            if ( response.ok ) {
-                const data = await response.json()
-                setData(data)
-                setLoadStatus(true)
+            const response = await fetch(restPath);
+            if (response.ok) {
+                const data = await response.json();
+                setData(data);
+                setLoadStatus(true);
             } else {
-                setLoadStatus(false)
+                setLoadStatus(false);
             }
         }
-        fetchData()
-    }, [restPath])
+        fetchData();
+    }, [restPath]);
     
     return (
-        <>
-        { isLoaded ?
-            <section id={`post-${restData.id}`}>
-                <h1>{restData.title.rendered}</h1>
-                <div className="entry-content">
-                    <p>{restData.acf.introduction}</p>
-                </div>
-            </section>
-        : 
-            <Loading /> 
-        }
-        </>            
-    )
+        <div className={`fade-in ${isLoaded ? 'show' : ''}`}>
+            {isLoaded && restData && (
+                <section id={`post-${restData.id}`}>
+                    <h1>{restData.title.rendered}</h1>
+                    <div className="entry-content">
+                        <p>{restData.acf.introduction}</p>
+                    </div>
+                </section>
+            )}
+        </div>
+    );
 }
 
-export default Home
+export default Home;
