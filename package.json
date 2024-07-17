@@ -1,6 +1,6 @@
 {
   "name": "itsgill-react-vite",
-  "homepage": "/itsgill",
+  "homepage": "/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,7 +16,8 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.2",
     "react-router-hash-link": "^2.4.3",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "sass": "^1.77.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.74",

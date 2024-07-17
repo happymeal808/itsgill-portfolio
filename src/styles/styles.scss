@@ -1,0 +1,10 @@
+@use './variables/vars';
+
+@use './generic/app';
+@use './generic/nav';
+@use './generic/normalize';
+
+@use './components/about';
+@use './components/contact';
+@use './components/home';
+@use './components/posts';

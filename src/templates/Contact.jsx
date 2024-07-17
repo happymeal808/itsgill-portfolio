@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { restBase } from '../utilities/Utilities';
-import Resume from '../components/Resume';
+import { toggleContactSection } from '../utilities/navigation';
 
-const Contact = () => {
+const Contact = ({ translateContact, setTranslateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout }) => {
     const restPath = `${restBase}pages/20`;
     const [restData, setData] = useState({});
     const [isLoaded, setLoadStatus] = useState(false);
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [resumeUrl, setResumeUrl] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,53 +28,29 @@ const Contact = () => {
         fetchData();
     }, [restPath]);
 
-    const openModal = (resume) => {
-        console.log('Opening modal with resume object:', resume); // Debugging log
-        if (resume && resume.url) {
-            const fullUrl = `${restBase}${resume.url}`; // Ensure the base URL is included
-            console.log('Full Resume URL:', fullUrl); // Debugging log
-            setResumeUrl(fullUrl);
-            setModalOpen(true);
-        } else {
-            console.error("Resume URL not found");
-        }
-    };
-
-    const closeModal = () => {
-        console.log('Closing modal'); // Debugging log
-        setModalOpen(false);
-        setResumeUrl('');
-    };
-
     return (
         <div className={`fade-in ${isLoaded ? 'show' : ''}`}>
             {isLoaded && restData && restData.acf ? (
-                <section id={`post-${restData.id}`}>
-                    <h1>{restData.title.rendered}</h1>
-                    <ul>
+                <section id='contact' className={`section ${translateContact ? 'translate-up' : ''}`}>
+                    <nav className="site-navigation">
+                        <button id='contact-btn' onClick={() => toggleContactSection(setTranslateContact, translateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout)}>
+                            <h2 className='section-title'>{restData.title.rendered}</h2>
+                        </button>
+                    </nav>
+                    <ul className='contact-links'>
                         {restData.acf.email && (
-                            <li><a href={`mailto:${restData.acf.email}`} target="_blank" rel="noopener noreferrer">Email</a></li>
-                        )}
-                        {restData.acf.resume && (
-                            <li><button onClick={() => openModal(restData.acf.resume)}>Resume</button></li>
+                            <li><a className='email' href={`mailto:${restData.acf.email}`} target="_blank" rel="noopener noreferrer">Email</a></li>
                         )}
                         {restData.acf.linkedin && (
-                            <li><a href={restData.acf.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a className='linkedin' href={restData.acf.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         )}
                         {restData.acf.github && (
-                            <li><a href={restData.acf.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a className='github' href={restData.acf.github} target="_blank" rel="noopener noreferrer">Github</a></li>
                         )}
                     </ul>
                 </section>
             ) : (
                 <p>Loading...</p>
-            )}
-            {resumeUrl && (
-                <Resume
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    resumeUrl={resumeUrl}
-                />
             )}
         </div>
     );

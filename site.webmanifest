@@ -1,0 +1,19 @@
+{
+    "name": "Hi, my name is Gill - Portfolio",
+    "short_name": "Gill - Portfolio",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#f7f7f8",
+    "background_color": "#f7f7f8",
+    "display": "standalone"
+}

@@ -1,0 +1,105 @@
+@import '../variables/vars';
+
+#about {
+    background-color: var(--section-about-background);
+    height: calc(100vh - 7.5rem);
+    position: fixed;
+    top: calc(100vh - 5rem);
+    right:0;
+    left:0;
+    z-index: 3;
+    border-top: 2px solid var(--text-light-theme);
+    transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;;
+    &.translate-up {
+        transform: translateY(calc(-100vh + 10.5rem));
+        margin-top: -0.5rem; // Adjust the margin to achieve the desired spacing
+    }
+
+    .section-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        padding-top: 1rem;
+    }
+    .about-paragraph {
+        padding: 0 1rem;
+    }
+
+    .about-portrait-fun {
+        width: 100%;
+        max-height: 100%;
+        padding: 0 1rem;
+
+        img {
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@media (min-width: 768px){
+    #about{
+        top: 4rem;
+        left: calc(100vw - 4rem);
+        right: unset;
+        height: calc(100vh - 4rem);
+        width: calc(100vw - 4rem);
+        border-top: none;
+        border-left: 2px solid var(--text-light-theme);
+        display: flex;
+        flex-direction: row;
+        z-index: 3;
+
+        &.translate-up {
+            transform: translateX(calc(-100vw + 8rem));
+            margin-top: unset;
+        }
+
+        .site-navigation{
+            height: calc(100vh - 4rem);
+            padding: 0.75rem;
+            width: 4rem;
+            #about-btn{
+                width: 4rem;
+                .section-title{
+                    transform: rotate(90deg);
+                    transform-origin: left top; 
+                    display: inline-block;
+                    white-space: nowrap;
+                    position: absolute;
+                    bottom: 5rem;
+                    left: 2.5rem;
+                }
+            }
+        }
+
+        .section-content{
+            flex-direction: row;
+
+
+            .about-paragraph{
+                padding: 0 2rem 0 5rem;
+                font-size: clamp(1rem, 2vw, 1.5rem);
+                width: 50vw;
+            }
+            .about-portrait-fun{
+                padding-right: 0;
+                position: absolute;
+                height: 50vh;
+                width: 35vw;
+                right: 0;
+                img{
+                    aspect-ratio: 3 / 4;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    height: 50vh;
+                    right: 0;
+                }
+            }
+        }
+    }
+}
