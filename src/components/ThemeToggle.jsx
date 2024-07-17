@@ -12,7 +12,7 @@ const ThemeToggle = () => {
 
   return (
     <button onClick={() => toggleTheme(theme, setTheme)} id='theme-toggle-btn'>
-      {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+      {theme === 'light' ? <SunIcon /> : <MoonIcon />}
     </button>
   );
 };
