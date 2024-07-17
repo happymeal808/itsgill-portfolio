@@ -63,11 +63,6 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
                     </section>
                 )}
             </div>
-            {showSections && (
-                <div id="other-sections">
-                    {/* Render other sections here */}
-                </div>
-            )}
         </>
     );
 }
