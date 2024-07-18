@@ -4,14 +4,14 @@
     background-color: var(--section-about-background);
     height: calc(100vh - 7.5rem);
     position: fixed;
-    top: calc(100vh - 5rem);
+    top: calc(100% - 5rem);
     right:0;
     left:0;
     z-index: 3;
     border-top: 2px solid var(--text-light-theme);
     transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;;
     &.translate-up {
-        transform: translateY(calc(-100vh + 10.5rem));
+        transform: translateY(calc(-100% + 3.5rem));
         margin-top: -0.5rem; // Adjust the margin to achieve the desired spacing
     }
 

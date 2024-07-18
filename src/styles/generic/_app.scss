@@ -46,10 +46,12 @@ button{
   content: ' 04';
 }
 
+
 body{
     font-family: $font_fam_body;
     color: var(--text-light-theme);
     background-color: var(--background);
+    height: 100%;
     overflow: hidden;
     position: relative;
     transition: $color-trans;

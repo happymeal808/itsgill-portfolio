@@ -3,7 +3,7 @@
 #works {
   z-index: 2;
   position: fixed;
-  top: calc(100vh - 7.55rem);
+  top: calc(100% - 7.5rem);
   right: 0;
   left: 0;
   background-color: var(--section-works-background);
@@ -31,6 +31,7 @@
 
       a svg {
         transition: fill 0.4s ease;
+        fill: var(--text-light-theme);
 
         &:hover {
           fill: var(--accent-color);
@@ -210,7 +211,7 @@
   }
 
   &.translate-up {
-    transform: translateY(calc(-100vh + 8rem));
+    transform: translateY(calc(-100% + 0.75rem));
     margin-top: 2rem;
   }
 
@@ -359,6 +360,9 @@
     }
 
     .section-content {
+      h2{
+        padding-top: 2rem;
+      }
       .content-wrapper {
         display: flex;
         flex-direction: row-reverse;
@@ -367,6 +371,9 @@
 
         .work-info {
           width: 50%;
+          width: 50%;
+          display: flex;
+          flex-direction: column; /* To ensure child elements stack vertically */
         }
 
         .work-gallery {
@@ -374,15 +381,15 @@
           padding-top: 0;
           height: 50vh;
         }
-      }
-
-      .project-links {
-        justify-content: flex-start;
-        gap: 2rem;
-        margin: 1rem 0;
-        svg{
-          fill: var(--text-light-theme);
+        .project-links {
+          justify-content: flex-start;
+          gap: 2rem;
+          margin: 1rem 0;
+  
         }
+      }
+      .posts-navigation {
+        padding-top: 3rem;
       }
     }
   }

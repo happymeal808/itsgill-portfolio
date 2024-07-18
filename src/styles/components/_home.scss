@@ -2,7 +2,7 @@
 
 #home {
     background-color: var(--background);
-    height: calc(100vh - 5rem);
+    height: calc(100% - 5rem);
     padding: 0;
     display: flex; 
     justify-content: center; 
@@ -14,13 +14,13 @@
     #theme-toggle-btn{
         position: absolute;
         left: 0.5rem;
-        top: -2.25rem;
+        top: -2.375rem;
         background-color: transparent;
         border:none;
-        height: 2.25rem;
-        width: 2.25rem;
         svg{
             fill: var(--text-light-theme);
+            height: 2rem;
+            width: 2rem;
             path{
                 stroke: var(--text-light-theme);
             }
@@ -34,6 +34,7 @@
             font-family: $font_fam_heading;
             font-size: 2rem;
             font-weight: 300;
+            margin-top: 35vh;
         }
     }
 }
@@ -53,8 +54,14 @@ nav {
             top: 1rem;
             left: unset;
             right: 1rem;
-            height: 2.5rem;
-            width: 2.5rem;
+            svg{
+                height: 2.25rem;
+                width: 2.25rem;
+            }
+        }
+
+        .entry-content .intro-text{
+            margin-top: unset;
         }
     }
 }
