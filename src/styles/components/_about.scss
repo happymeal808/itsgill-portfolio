@@ -2,16 +2,18 @@
 
 #about {
     background-color: var(--section-about-background);
-    height: calc(100vh - 7.5rem);
+    height: calc(100% - 7.5rem);
     position: fixed;
     top: calc(100% - 5rem);
     right:0;
     left:0;
     z-index: 3;
     border-top: 2px solid var(--text-light-theme);
-    transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;;
+    transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;
+    padding-bottom: 3rem;
+    margin-bottom: 0rem;
     &.translate-up {
-        transform: translateY(calc(-100% + 3.5rem));
+        transform: translateY(calc(-100% + 3rem));
         margin-top: -0.5rem; // Adjust the margin to achieve the desired spacing
     }
 
@@ -21,9 +23,13 @@
         justify-content: center;
         flex-direction: column-reverse;
         padding-top: 1rem;
+        height: 100%;
+        overflow-y: auto;
     }
     .about-paragraph {
-        padding: 0 1rem;
+        padding: 0 1rem 10rem;
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+    
     }
 
     .about-portrait-fun {
@@ -37,11 +43,13 @@
             border-radius: 0.5rem;
             width: 100%;
             height: 100%;
+            min-height: 10rem;
+            object-position: 50% 25%
         }
     }
 }
 
-@media (min-width: 768px){
+@media (min-width: 48rem){
     #about{
         top: 4rem;
         left: calc(100vw - 4rem);
@@ -53,6 +61,7 @@
         display: flex;
         flex-direction: row;
         z-index: 3;
+        padding-bottom: unset;
 
         &.translate-up {
             transform: translateX(calc(-100vw + 8rem));
@@ -71,20 +80,22 @@
                     display: inline-block;
                     white-space: nowrap;
                     position: absolute;
-                    bottom: 5rem;
-                    left: 2.5rem;
+                    bottom: 6.5rem;
+                    left: 2.75rem;
                 }
             }
         }
 
         .section-content{
             flex-direction: row;
-
+            padding-bottom: unset;
+            overflow-y: hidden;
 
             .about-paragraph{
                 padding: 0 2rem 0 5rem;
-                font-size: clamp(1rem, 2vw, 1.5rem);
                 width: 50vw;
+                
+                padding: 0 1rem 0rem;
             }
             .about-portrait-fun{
                 padding-right: 0;

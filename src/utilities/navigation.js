@@ -1,62 +1,58 @@
 const isSmallScreen = () => window.innerWidth < 768;
-window.scrollTo(0, 1); 
+window.scrollTo(0, 1);
 
+const toggleSection = (setTranslateFunction, sectionElement, shouldTranslate) => {
+    setTranslateFunction(shouldTranslate);
+    if (shouldTranslate) {
+        sectionElement.classList.add('translate-up');
+    } else {
+        sectionElement.classList.remove('translate-up');
+    }
+};
+
+const untoggleSections = (sections) => {
+    sections.forEach(([setTranslateFunction, sectionElement]) => {
+        setTranslateFunction(false);
+        sectionElement.classList.remove('translate-up');
+    });
+};
 
 export const toggleWorksSection = (setTranslateWorks, translateWorks, setTranslateAbout, translateAbout, setTranslateContact, translateContact) => {
-    
+
     const worksSection = document.getElementById('works');
     const aboutSection = document.getElementById('about');
     const contactSection = document.getElementById('contact');
 
     if (!isSmallScreen()) {
         if (translateWorks) {
-            setTranslateWorks(false);
-            worksSection.classList.remove('translate-up');
+            toggleSection(setTranslateWorks, worksSection, false);
         } else {
-            setTranslateWorks(true);
-            worksSection.classList.add('translate-up');
-
-            if (translateAbout) {
-                setTranslateAbout(false);
-                aboutSection.classList.remove('translate-up');
-            }
-
-            if (translateContact) {
-                setTranslateContact(false);
-                contactSection.classList.remove('translate-up');
-            }
+            toggleSection(setTranslateWorks, worksSection, true);
+            if (translateAbout) toggleSection(setTranslateAbout, aboutSection, false);
+            if (translateContact) toggleSection(setTranslateContact, contactSection, false);
         }
         return;
     }
 
-
-    if (translateWorks) {
-        // If works is already toggled, untoggle works and any other toggled sections
-        setTranslateWorks(false);
-        worksSection.classList.remove('translate-up');
-
-        if (translateAbout) {
-            setTranslateAbout(false);
-            aboutSection.classList.remove('translate-up');
-        }
-        if (translateContact) {
-            setTranslateContact(false);
-            contactSection.classList.remove('translate-up');
-        }
+    if (translateWorks && translateAbout && !translateContact) {
+        untoggleSections([
+            [setTranslateAbout, aboutSection]
+        ]);
+        toggleSection(setTranslateWorks, worksSection, true);
+    } else if (translateWorks && translateAbout && translateContact) {
+        untoggleSections([
+            [setTranslateAbout, aboutSection],
+            [setTranslateContact, contactSection]
+        ]);
+        toggleSection(setTranslateWorks, worksSection, true);
+    } else if (translateWorks) {
+        untoggleSections([
+            [setTranslateWorks, worksSection],
+            [setTranslateAbout, aboutSection],
+            [setTranslateContact, contactSection]
+        ]);
     } else {
-        // If all sections are toggled, untoggle all sections
-        if (translateWorks && translateAbout && translateContact) {
-            setTranslateWorks(false);
-            setTranslateAbout(false);
-            setTranslateContact(false);
-            worksSection.classList.remove('translate-up');
-            aboutSection.classList.remove('translate-up');
-            contactSection.classList.remove('translate-up');
-        } else {
-            // Toggle works
-            setTranslateWorks(true);
-            worksSection.classList.add('translate-up');
-        }
+        toggleSection(setTranslateWorks, worksSection, true);
     }
 };
 
@@ -66,55 +62,30 @@ export const toggleAboutSection = (setTranslateAbout, translateAbout, translateW
     const worksSection = document.getElementById('works');
     const contactSection = document.getElementById('contact');
 
-    if (!isSmallScreen()){
+    if (!isSmallScreen()) {
         if (translateAbout) {
-            setTranslateAbout(false);
-            aboutSection.classList.remove('translate-up');
+            toggleSection(setTranslateAbout, aboutSection, false);
         } else {
-            setTranslateAbout(true);
-            aboutSection.classList.add('translate-up');
-
-            if (translateWorks) {
-                setTranslateWorks(false);
-                worksSection.classList.remove('translate-up');
-            }
-
-            if (translateContact) {
-                setTranslateContact(false);
-                contactSection.classList.remove('translate-up');
-            }
-            
+            toggleSection(setTranslateAbout, aboutSection, true);
+            if (translateWorks) toggleSection(setTranslateWorks, worksSection, false);
+            if (translateContact) toggleSection(setTranslateContact, contactSection, false);
         }
         return;
-    } 
-    if (translateAbout) {
-        // If about is already toggled, untoggle it
-        setTranslateAbout(false);
-        aboutSection.classList.remove('translate-up');
-        
-        // Ensure contact is untoggled if it was toggled up
-        if (translateContact) {
-            setTranslateContact(false);
-            contactSection.classList.remove('translate-up');
-        }
-    } else {
-        // If both about and contact are toggled, untoggle them
-        if (translateAbout && translateContact) {
-            setTranslateAbout(false);
-            setTranslateContact(false);
-            aboutSection.classList.remove('translate-up');
-            contactSection.classList.remove('translate-up');
-        } else {
-            // Toggle about
-            setTranslateAbout(true);
-            aboutSection.classList.add('translate-up');
+    }
 
-            // Ensure works is toggled
-            if (!translateWorks) {
-                setTranslateWorks(true);
-                worksSection.classList.add('translate-up');
-            }
-        }
+    if (translateWorks && translateAbout && translateContact) {
+        untoggleSections([
+            [setTranslateContact, contactSection]
+        ]);
+        toggleSection(setTranslateAbout, aboutSection, true);
+    } else if (translateAbout) {
+        untoggleSections([
+            [setTranslateAbout, aboutSection],
+            [setTranslateContact, contactSection]
+        ]);
+    } else {
+        toggleSection(setTranslateAbout, aboutSection, true);
+        if (!translateWorks) toggleSection(setTranslateWorks, worksSection, true);
     }
 };
 
@@ -124,45 +95,24 @@ export const toggleContactSection = (setTranslateContact, translateContact, tran
     const worksSection = document.getElementById('works');
     const aboutSection = document.getElementById('about');
 
-    if (!isSmallScreen()){
+    if (!isSmallScreen()) {
         if (translateContact) {
-            setTranslateContact(false);
-            contactSection.classList.remove('translate-up');
+            toggleSection(setTranslateContact, contactSection, false);
         } else {
-            setTranslateContact(true);
-            contactSection.classList.add('translate-up');
-
-            if (translateAbout) {
-                setTranslateAbout(false);
-                aboutSection.classList.remove('translate-up');
-            }
-            if (translateWorks) {
-                setTranslateWorks(false);
-                worksSection.classList.remove('translate-up');
-            }
+            toggleSection(setTranslateContact, contactSection, true);
+            if (translateAbout) toggleSection(setTranslateAbout, aboutSection, false);
+            if (translateWorks) toggleSection(setTranslateWorks, worksSection, false);
         }
         return;
     }
 
     if (translateContact) {
-        // If contact is already toggled, untoggle it
-        setTranslateContact(false);
-        contactSection.classList.remove('translate-up');
+        untoggleSections([
+            [setTranslateContact, contactSection]
+        ]);
     } else {
-        // Toggle contact
-        setTranslateContact(true);
-        contactSection.classList.add('translate-up');
-
-        // Ensure works is toggled
-        if (!translateWorks) {
-            setTranslateWorks(true);
-            worksSection.classList.add('translate-up');
-        }
-
-        // Ensure about is toggled
-        if (!translateAbout) {
-            setTranslateAbout(true);
-            aboutSection.classList.add('translate-up');
-        }
+        toggleSection(setTranslateContact, contactSection, true);
+        if (!translateWorks) toggleSection(setTranslateWorks, worksSection, true);
+        if (!translateAbout) toggleSection(setTranslateAbout, aboutSection, true);
     }
 };

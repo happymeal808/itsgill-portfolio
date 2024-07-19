@@ -45,7 +45,7 @@
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
     header.site-header.home{
         height: calc(100vh - 4rem);
         width: 4rem;
@@ -68,10 +68,13 @@
                     display: inline-block;
                     white-space: nowrap;
                     position: absolute;
-                    top: 6rem;
-                    left: 1.25rem;
+                    top: 7.5rem;
+                    left: 1.125rem;
                 }
             }
         }
+    }
+    .section-title {
+        font-size: 1.6255rem;
     }
 }

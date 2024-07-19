@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { restBase, featuredImage } from '../utilities/Utilities';
 import { toggleWorksSection } from '../utilities/navigation';
 
-const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout, translateContact, setTranslateContact }) => {
+const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout, translateContact, setTranslateContact, setLoading }) => {
   const restPath = `${restBase}posts?_embed=true`;
   const metadataPath = `${restBase}pages?slug=works`;
   const [restData, setData] = useState([]);
@@ -10,6 +10,7 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const [postsResponse, metadataResponse] = await Promise.all([
           fetch(restPath),
@@ -28,13 +29,14 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
       } catch (error) {
         setLoadStatus(false);
       }
+      setLoading(false);
     };
     fetchData();
-  }, [restPath, metadataPath]);
+  }, [restPath, metadataPath, setLoading]);
 
   return (
-    <div>
-      {isLoaded && restData.length > 0 && (
+    <div className={`fade-in ${isLoaded ? 'show' : ''}`}>
+      {isLoaded && (
         <section id="works" className={translateWorks ? 'translate-up' : ''}>
           <nav className='site-navigation'>
             <button
@@ -54,7 +56,7 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
             </button>
           </nav>
           <nav className='works-navigation'>
-            <ul className={`entry-content fade-in ${isLoaded ? 'show' : ''}`}>
+            <ul className='entry-content'>
               {restData.map(post => (
                 <li key={post.id} id={`post-${post.id}`}>
                   <div className="item-wrapper">

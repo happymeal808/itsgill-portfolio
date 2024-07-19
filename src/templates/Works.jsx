@@ -2,27 +2,36 @@ import React, { useState } from 'react';
 import Posts from './Posts';
 import Post from './Post';
 
-const Works = ({ worksTitle }) => {
-  const [translateWorks, setTranslateWorks] = useState(false);
-  const [translateAbout, setTranslateAbout] = useState(false);
-  const [translateContact, setTranslateContact] = useState(false);
-  const [selectedPostSlug, setSelectedPostSlug] = useState(null);
+const Works = ({ worksTitle, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout, translateContact, setTranslateContact }) => {
+  const [selectedWork, setSelectedWork] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+  const [transitionClass, setTransitionClass] = useState('fade-in show');
 
   const handleSelectWork = (slug) => {
-    setSelectedPostSlug(slug);
-    setTranslateWorks(true);
+    setLoading(true);
+    setTransitionClass('fade-out hide');
+    setTimeout(() => {
+      setSelectedWork(slug);
+      setTransitionClass('fade-in show');
+      setLoading(false);
+    }, 200); // Duration should match the CSS transition duration
   };
 
   const handleBack = () => {
-    setSelectedPostSlug(null);
-    setTranslateWorks(false);
+    setLoading(true);
+    setTransitionClass('fade-out hide');
+    setTimeout(() => {
+      setSelectedWork(null);
+      setTransitionClass('fade-in show');
+      setLoading(false);
+    }, 200); // Duration should match the CSS transition duration
   };
 
   return (
-    <div>
-      {selectedPostSlug ? (
+    <div className={`background-works ${transitionClass}`}>
+      {selectedWork ? (
         <Post
-          slug={selectedPostSlug}
+          slug={selectedWork}
           onBack={handleBack}
           onSelectWork={handleSelectWork}
           worksTitle={worksTitle}
@@ -32,6 +41,7 @@ const Works = ({ worksTitle }) => {
           setTranslateAbout={setTranslateAbout}
           translateContact={translateContact}
           setTranslateContact={setTranslateContact}
+          setLoading={setLoading}
         />
       ) : (
         <Posts
@@ -43,6 +53,7 @@ const Works = ({ worksTitle }) => {
           setTranslateAbout={setTranslateAbout}
           translateContact={translateContact}
           setTranslateContact={setTranslateContact}
+          setLoading={setLoading}
         />
       )}
     </div>

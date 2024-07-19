@@ -1,5 +1,4 @@
 @import '../variables/vars';
-
 #works {
   z-index: 2;
   position: fixed;
@@ -7,7 +6,7 @@
   right: 0;
   left: 0;
   background-color: var(--section-works-background);
-  height: calc(100vh - 7.5rem);
+  height: calc(100% - 7.5rem);
   transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;
   border-top: 2px solid var(--text-light-theme);
 
@@ -211,7 +210,7 @@
   }
 
   &.translate-up {
-    transform: translateY(calc(-100% + 0.75rem));
+    transform: translateY(calc(-100% + 0.5rem));
     margin-top: 2rem;
   }
 
@@ -235,7 +234,6 @@
     .work-title {
       font-family: $font_fam_heading;
       font-weight: 400;
-      font-size: 2rem;
       margin: 0;
       transition: color 0.5s ease;
 
@@ -277,10 +275,10 @@
           max-width: 35rem;
 
           .works-btn {
-            padding: 1rem;
+            padding: 0.625rem;
 
             .work-title {
-              font-size: 2rem;
+              font-size: clamp(1.5rem, 3vw, 2rem);
             }
           }
         }
@@ -302,6 +300,14 @@
     display: flex;
     flex-direction: column-reverse;
     z-index: 5;
+
+    ul {
+      li {
+        .works-btn {
+          padding: 1rem;
+        }
+      }
+    }
 
     ::-webkit-scrollbar {
       width: 0.75rem;
@@ -342,6 +348,14 @@
       padding: 0.75rem;
       width: calc(100vw - 4rem);
       border-bottom: 2px solid var(--text-light-theme);
+      #works-btn{
+        height: 2.375rem;
+        .section-title{
+          position: absolute;
+          bottom: 0.625rem;
+          right: 1.125rem;
+        }
+      }
     }
 
     &.translate-up {
@@ -361,7 +375,7 @@
 
     .section-content {
       h2{
-        padding-top: 2rem;
+        padding-top: 3rem;
       }
       .content-wrapper {
         display: flex;

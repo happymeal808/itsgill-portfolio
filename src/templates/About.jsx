@@ -46,6 +46,9 @@ const About = ({ translateAbout, setTranslateAbout, translateWorks, setTranslate
                             {restData.acf.about_paragraph && (
                                 <p>{restData.acf.about_paragraph}</p>
                             )}
+                            {restData.acf.personal_about_paragraph && (
+                                <p>{restData.acf.personal_about_paragraph}</p>
+                            )}
                         </div>
                         {restData.acf.portrait && restData.acf.portrait.source_url && (
                             <div className='about-portrait-fun'>

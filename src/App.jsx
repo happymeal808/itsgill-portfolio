@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Home from './templates/Home';
 import About from './templates/About';
-import Posts from './templates/Posts';
-import Post from './templates/Post';
+import Works from './templates/Works';
 import Contact from './templates/Contact';
 import { restBase } from './utilities/Utilities';
 
@@ -38,31 +37,17 @@ function App() {
           translateContact={translateContact}
           setTranslateContact={setTranslateContact}
         />
-        {selectedWork ? (
-          <Post 
-            slug={selectedWork} 
-            onBack={() => setSelectedWork(null)} 
-            onSelectWork={setSelectedWork} 
-            worksTitle={worksTitle} 
-            translateWorks={translateWorks} 
-            setTranslateWorks={setTranslateWorks} 
-            translateAbout={translateAbout}
-            setTranslateAbout={setTranslateAbout}
-            translateContact={translateContact}
-            setTranslateContact={setTranslateContact}
-          />
-        ) : (
-          <Posts 
-            onSelectWork={setSelectedWork} 
-            worksTitle={worksTitle} 
-            translateWorks={translateWorks} 
-            setTranslateWorks={setTranslateWorks} 
-            translateAbout={translateAbout}
-            setTranslateAbout={setTranslateAbout}
-            translateContact={translateContact}
-            setTranslateContact={setTranslateContact}
-          />
-        )}
+        <Works 
+          selectedWork={selectedWork}
+          setSelectedWork={setSelectedWork}
+          worksTitle={worksTitle} 
+          translateWorks={translateWorks} 
+          setTranslateWorks={setTranslateWorks} 
+          translateAbout={translateAbout}
+          setTranslateAbout={setTranslateAbout}
+          translateContact={translateContact}
+          setTranslateContact={setTranslateContact}
+        />
         <About 
           translateAbout={translateAbout} 
           setTranslateAbout={setTranslateAbout} 

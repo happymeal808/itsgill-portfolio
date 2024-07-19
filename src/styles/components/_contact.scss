@@ -9,10 +9,10 @@
     z-index: 4;
     border-top: 2px solid var(--text-light-theme);
     transition: transform 0.5s ease-in-out, margin-top 0.5s ease-in-out, $color-trans;
-    height: calc(100vh - 7.5rem);
+    height: calc(100% - 7.5rem);
 
     &.translate-up {
-        transform: translateY(calc(-100% + 3.75rem));
+        transform: translateY(calc(-100% + 3rem));
         margin-top: -0.5rem;
     }
 
@@ -24,10 +24,10 @@
         align-items: center; 
         justify-content: center;
         gap: 1rem;
-        margin: 0;
+        margin: 2rem 0 0 1rem;
         height: 100%;
         padding-bottom: 10rem;
-        margin-left: 1rem;
+        
 
         li {
             width: 20rem;
@@ -37,7 +37,7 @@
             a {
                 text-decoration: none;
                 color: var(--text-light-theme);
-                font-size: 2rem;
+                font-size: clamp(1.375rem, 5vh, 2rem);
                 position: relative;
                 display: inline-block;
                 padding-left: 2rem; 
@@ -46,62 +46,68 @@
         }
     }
     
-    .contact-links li .email::before {
-        content: 'Send me an '; 
-        position: absolute;
-        left: -7rem; 
-        opacity: 0; 
-        transition: opacity 0.6s, left 0.6s;
-    }
     
-    .contact-links li .email:hover,
-    .contact-links li .email:focus {
-        padding-left: 11rem; 
-        color: var(--accent-color);
-    }
-    
-    .contact-links li .linkedin::before {
-        content: "Let's link up on "; 
-        position: absolute;
-        left: -7rem; 
-        opacity: 0; 
-        transition: opacity 0.6s, left 0.6s; 
-    }
-    
-    .contact-links li .linkedin:hover,
-    .contact-links li .linkedin:focus {
-        padding-left: 13.5rem; 
-        color: var(--accent-color);
+}
 
-    }
-    
-    .contact-links li .github::before {
-        content: "Check out my "; 
-        position: absolute;
-        left: -7rem;
-        opacity: 0; 
-        transition: opacity 0.6s, left 0.6s; 
-    }
-    
-    .contact-links li .github:hover,
-    .contact-links li .github:focus {
-        padding-left: 13rem; 
-        color: var(--accent-color);
+@media (min-width:31rem){
+    #contact{
+        .contact-links li .email::before {
+            content: 'Send me an '; 
+            position: absolute;
+            left: -7rem; 
+            opacity: 0; 
+            transition: opacity 0.6s, left 0.6s;
+        }
+        
+        .contact-links li .email:hover,
+        .contact-links li .email:focus {
+            padding-left: 11rem; 
+            color: var(--accent-color);
+        }
+        
+        .contact-links li .linkedin::before {
+            content: "Let's link up on "; 
+            position: absolute;
+            left: -7rem; 
+            opacity: 0; 
+            transition: opacity 0.6s, left 0.6s; 
+        }
+        
+        .contact-links li .linkedin:hover,
+        .contact-links li .linkedin:focus {
+            padding-left: 13.5rem; 
+            color: var(--accent-color);
 
-    }
-    
-    .contact-links li .email:hover::before,
-    .contact-links li .email:focus::before,
-    .contact-links li .linkedin:hover::before,
-    .contact-links li .linkedin:focus::before,
-    .contact-links li .github:hover::before,
-    .contact-links li .github:focus::before {
-        opacity: 1; 
-        left: 0; 
+        }
+        
+        .contact-links li .github::before {
+            content: "Check out my "; 
+            position: absolute;
+            left: -7rem;
+            opacity: 0; 
+            transition: opacity 0.6s, left 0.6s; 
+        }
+        
+        .contact-links li .github:hover,
+        .contact-links li .github:focus {
+            padding-left: 13rem; 
+            color: var(--accent-color);
+
+        }
+        
+        .contact-links li .email:hover::before,
+        .contact-links li .email:focus::before,
+        .contact-links li .linkedin:hover::before,
+        .contact-links li .linkedin:focus::before,
+        .contact-links li .github:hover::before,
+        .contact-links li .github:focus::before {
+            opacity: 1; 
+            left: 0; 
+        }
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
     #contact{
         width: calc(100vw - 4rem);
         top: calc(100vh - 4rem);
@@ -123,11 +129,11 @@
             padding: 0.75rem;
             #contact-btn{
                 .section-title{
+                    position: absolute;
                     text-align: left;
+                    top: 0.625rem;
                 }
             }
         }
-
-
     }
 }

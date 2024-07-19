@@ -46,7 +46,7 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
 
     return (
         <>
-            <header className="site-header home">
+            <header className={`site-header home fade-in ${isLoaded ? 'show' : ''}`}>
                 <nav className="site-navigation">
                     <button onClick={handleHomeClick} id='home-btn'>
                         <h1 className='section-title'>{restData ? restData.title.rendered : 'Home'}</h1>
