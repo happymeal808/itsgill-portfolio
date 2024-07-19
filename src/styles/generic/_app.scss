@@ -1,0 +1,90 @@
+@import '../variables/vars';
+// THEMES
+// light
+:root {
+	--background: #F4F0E9;
+	--section-works-background: #F1ECE4;
+	--section-about-background: #EAE3D7;
+	--section-contact-background: #E3DACA;
+	--text-light-theme: #1E1E1E;
+	--accent-color: #1C7AD9;
+  }
+//   dark
+[data-theme='dark'] {
+	--background: #1E1E1E;
+	--section-works-background: #292929;
+	--section-about-background: #292929;
+	--section-contact-background: #292929;
+	--text-light-theme: #F1ECE4;
+	--accent-color: #BEFCC8;
+}
+
+// typography
+h1, h2, h3 {
+    font-family: $font_fam_heading;
+    color: var(--text-light-theme);
+    transition: $color-trans;
+}
+
+button{
+  cursor: pointer;
+
+}
+#home-btn .section-title::after{
+  content: ' 01';
+}
+
+#works-btn .section-title::after{
+  content: ' 02';
+}
+
+#about-btn .section-title::after{
+  content: ' 03';
+}
+
+#contact-btn .section-title::after{
+  content: ' 04';
+}
+
+
+body{
+    font-family: $font_fam_body;
+    color: var(--text-light-theme);
+    background-color: var(--background);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    transition: $color-trans;
+}
+
+/* Apply box-sizing: border-box globally */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* General styling */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+  }
+
+  // mobile functionality
+
+main{
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  #contact-btn .section-title::after{
+    content: unset;
+  }
+  #contact-btn .section-title::before{
+    content: "04 ";
+  }
+}

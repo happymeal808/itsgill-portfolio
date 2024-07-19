@@ -1,0 +1,69 @@
+// THEMES
+// light
+:root {
+	--background: #F4F0E9;
+	--section-works-background: #F1ECE4;
+	--section-about-background: #EAE3D7;
+	--section-contact-background: #E3DACA;
+	--text-light-theme: #1E1E1E;
+	--accent-color: #1C7AD9;
+  }
+  
+  // dark
+  [data-theme='dark'] {
+	--background: #1E1E1E;
+	--section-works-background: #222222;
+	--section-about-background: #262626;
+	--section-contact-background: #292929;
+	--text-light-theme: #F1ECE4;
+	--accent-color: #BEFCC8;
+  }
+  
+
+// theme transition
+$color-trans: background-color 0.3s ease;
+
+// TYPOGRAPHY
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+$font_fam_heading: "DM Sans", sans-serif;
+// <weight>: Use a value from 400 to 900
+
+$font_fam_subheading: "DM Mono", monospace;
+
+$font_fam_body: "DM Sans", sans-serif;
+// <weight>: Use a value from 100 to 1000
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; // Many screen reader and browser combinations announce broken words as they would appear visually.
+
+	&:focus {
+		background-color: var(--background);
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		clip-path: none;
+		color: var(--text-light-theme);
+		display: block;
+		font-size: 0.875rem;
+		font-weight: 700;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; // Above WP toolbar.
+	}
+}

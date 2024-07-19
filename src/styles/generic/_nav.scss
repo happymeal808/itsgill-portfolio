@@ -1,0 +1,80 @@
+@import '../variables/vars';
+
+.site-navigation {
+    background-color: #FFFFFF00;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.site-navigation:hover,
+.site-navigation:focus,
+.site-navigation:active {
+    .section-title{
+        color: var(--accent-color);
+        transition:color 0.5s ease;
+        transition: $color-trans;
+    }
+}
+
+
+#home-btn,
+#works-btn,
+#about-btn,
+#contact-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: right;
+
+    .section-title {
+        margin: 0.5rem 0;
+        transition:color 0.5s ease;
+    }
+}
+
+#home-btn{
+    width:90%;
+}
+
+.section-title {
+    font-family: $font_fam_subheading;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+
+@media (min-width: 48rem) {
+    header.site-header.home{
+        height: calc(100vh - 4rem);
+        width: 4rem;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 4rem;
+        border-right: 2px solid var(--text-light-theme);
+        .site-navigation{
+            height: calc(100vh - 4rem);
+            width: 4rem;
+            position: relative;
+            padding: 0.75rem;
+            #home-btn{
+                height: 100%;
+                width: 100%;
+                .section-title{
+                    transform: rotate(-90deg);
+                    transform-origin: left top; 
+                    display: inline-block;
+                    white-space: nowrap;
+                    position: absolute;
+                    top: 7.5rem;
+                    left: 1.125rem;
+                }
+            }
+        }
+    }
+    .section-title {
+        font-size: 1.6255rem;
+    }
+}
