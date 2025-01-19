@@ -33,21 +33,24 @@ const Contact = ({ translateContact, setTranslateContact, translateWorks, setTra
             {isLoaded && restData && restData.acf ? (
                 <section id='contact' className={`section ${translateContact ? 'translate-up' : ''}`}>
                     <nav className="site-navigation">
-                        <button id='contact-btn' onClick={() => toggleContactSection(setTranslateContact, translateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout)}>
+                        <button aria-label='Contact Button' id='contact-btn' onClick={() => toggleContactSection(setTranslateContact, translateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout)}>
                             <h2 className='section-title'>{restData.title.rendered}</h2>
                         </button>
                     </nav>
-                    <ul className='contact-links'>
-                        {restData.acf.email && (
-                            <li><a className='email' href={`mailto:${restData.acf.email}`} target="_blank" rel="noopener noreferrer">Email</a></li>
-                        )}
-                        {restData.acf.linkedin && (
-                            <li><a className='linkedin' href={restData.acf.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        )}
-                        {restData.acf.github && (
-                            <li><a className='github' href={restData.acf.github} target="_blank" rel="noopener noreferrer">Github</a></li>
-                        )}
-                    </ul>
+                    <article className='contact-wrapper'>
+                        <h3 className='contact-heading'>let's be frandz:</h3>
+                        <ul className='contact-links'>
+                            {restData.acf.email && (
+                                <li><a className='email' href={`mailto:${restData.acf.email}`} target="_blank" rel="noopener noreferrer">Email</a></li>
+                            )}
+                            {restData.acf.linkedin && (
+                                <li><a className='linkedin' href={restData.acf.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            )}
+                            {restData.acf.github && (
+                                <li><a className='github' href={restData.acf.github} target="_blank" rel="noopener noreferrer">Github</a></li>
+                            )}
+                        </ul>
+                    </article>
                 </section>
             ) : (
                 <p>Loading...</p>

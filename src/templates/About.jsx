@@ -37,7 +37,7 @@ const About = ({ translateAbout, setTranslateAbout, translateWorks, setTranslate
             {restData ? (
                 <section id='about' className={`section ${translateAbout ? 'translate-up' : ''}`}>
                     <nav className="site-navigation">
-                        <button id='about-btn' onClick={() => toggleAboutSection(setTranslateAbout, translateAbout, translateWorks, setTranslateWorks, translateContact, setTranslateContact)}>
+                        <button aria-label='About Button' id='about-btn' onClick={() => toggleAboutSection(setTranslateAbout, translateAbout, translateWorks, setTranslateWorks, translateContact, setTranslateContact)}>
                             <h2 className='section-title'>{restData.title.rendered}</h2>
                         </button>
                     </nav>

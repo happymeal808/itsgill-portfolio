@@ -49,6 +49,7 @@
     }
 }
 
+
 @media (min-width: 48rem){
     #about{
         top: 4rem;
@@ -85,7 +86,15 @@
                 }
             }
         }
+        .section-content{
+            padding-right: 4rem;
+            padding-bottom: 10rem;
+        }
+    }
+}
 
+@media (min-width: 62rem){
+    #about{
         .section-content{
             flex-direction: row;
             padding-bottom: unset;

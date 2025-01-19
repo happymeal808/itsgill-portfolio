@@ -31,12 +31,16 @@
 
     .entry-content {
         margin: 0 2rem;
+        display: flex;
+        justify-content: center; /* Optional: for horizontal centering */
+        flex-direction: column;
+        height: 100vh;
+        padding-bottom: 10rem;
 
         .intro-text {
             font-family: $font_fam_heading;
             font-size: 2rem;
             font-weight: 300;
-            margin-top: 35vh;
             text-align: right;
             margin-bottom: 1.25rem;
         }
@@ -125,12 +129,15 @@ nav {
         }
 
         .entry-content {
+        padding-bottom: 0rem;
             .intro-text {
                 margin-top: unset;
                 text-align: center;
+                margin: 0;
             }
             .about-text{
                 text-align: center;
+                margin: 2rem 0;
             }
 
             .home-links {
