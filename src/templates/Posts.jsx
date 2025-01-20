@@ -40,6 +40,7 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
         <section id="works" className={translateWorks ? 'translate-up' : ''}>
           <nav className='site-navigation'>
             <button
+              aria-label='Works Button'
               id='works-btn'
               onClick={() =>
                 toggleWorksSection(
@@ -60,7 +61,7 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
               {restData.map(post => (
                 <li key={post.id} id={`post-${post.id}`}>
                   <div className="item-wrapper">
-                    <button className='works-btn' onClick={() => onSelectWork(post.slug)}>
+                    <button aria-label='Single Works Button' className='works-btn' onClick={() => onSelectWork(post.slug)}>
                       <h3 className='work-title'>{post.title.rendered}</h3>
                     </button>
                     {post.featured_media !== 0 && post._embedded && (

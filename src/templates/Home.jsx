@@ -28,6 +28,28 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
         applyTheme(theme);
     }, [theme]);
 
+    const handleToggleWorks = () => {
+        setTranslateWorks(!translateWorks);
+        document.getElementById('works').classList.toggle('translate-up');
+    };
+
+    const handleToggleAbout = () => {
+        const isSmallScreen = window.innerWidth < 768;
+
+        if (isSmallScreen) {
+            // Toggle both Works and About sections on small screens
+            setTranslateWorks(!translateWorks);
+            document.getElementById('works').classList.toggle('translate-up');
+
+            setTranslateAbout(!translateAbout);
+            document.getElementById('about').classList.toggle('translate-up');
+        } else {
+            // Toggle only the About section on larger screens
+            setTranslateAbout(!translateAbout);
+            document.getElementById('about').classList.toggle('translate-up');
+        }
+    };
+
     const handleHomeClick = () => {
         setShowSections(!showSections);
         if (translateWorks) {
@@ -48,7 +70,7 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
         <>
             <header className={`site-header home fade-in ${isLoaded ? 'show' : ''}`}>
                 <nav className="site-navigation">
-                    <button onClick={handleHomeClick} id='home-btn'>
+                    <button aria-label='Home Button' onClick={handleHomeClick} id='home-btn'>
                         <h1 className='section-title'>{restData ? restData.title.rendered : 'Home'}</h1>
                     </button>
                 </nav>
@@ -57,8 +79,17 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
                 {isLoaded && restData && (
                     <section id='home'>
                         <div className="entry-content">
-                        <ThemeToggle theme={theme} setTheme={setTheme} />
+                            <ThemeToggle theme={theme} setTheme={setTheme} />
                             <p className='intro-text'>{restData.acf.introduction}</p>
+                            <p className='about-text'>{restData.acf.intro_about}</p>
+                            <div className="home-links">
+                                <button aria-label='Works Button' onClick={handleToggleWorks}>
+                                    {restData.acf.see_projects}
+                                </button>
+                                <button aria-label='About Button' onClick={handleToggleAbout}>
+                                    {restData.acf.see_about}
+                                </button>
+                            </div>
                         </div>
                     </section>
                 )}

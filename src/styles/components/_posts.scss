@@ -66,6 +66,14 @@
         height: 100%;
         width: 100%;
         fill: var(--text-light-theme);
+        transition: fill 0.3s ease;
+      }
+
+      svg:hover,
+      svg:active,
+      svg:focus{
+        fill: var(--accent-color);
+        transition: fill 0.3s ease;
       }
 
       &::after {
@@ -87,9 +95,11 @@
       }
 
       &:hover::after,
-      &:focus::after {
+      &:focus::after,
+      &:active::after {
         opacity: 1;
         visibility: visible;
+        color: var(--accent-color);
       }
     }
 
@@ -114,6 +124,17 @@
           width: 75%;
           fill: var(--text-light-theme);
         }
+
+        .prev-post:hover,
+        .prev-post:active,
+        .prev-post:focus,
+        .next-post:hover,
+        .next-post:active,
+        .next-post:focus{
+          svg {
+            fill: var(--accent-color);
+          }
+        }
       }
 
       .next-post::before {
@@ -126,6 +147,12 @@
         content: " Prev";
         font-family: $font_fam_subheading;
         font-size: 1.25rem;
+
+        &:hover::after,
+        &:focus::after,
+        &:active::after{
+          color: var(--accent-color);
+        }
       }
 
       .next-post{
@@ -230,12 +257,15 @@
     background-color: transparent;
     border: none;
     padding: 1rem;
+    width: 100%;  /* Ensure the button takes full width */
+    text-align: right;  /* Right-align the text inside the button */
 
     .work-title {
       font-family: $font_fam_heading;
       font-weight: 400;
       margin: 0;
       transition: color 0.5s ease;
+  
 
       &:hover {
         color: var(--accent-color);
@@ -278,7 +308,7 @@
             padding: 0.625rem;
 
             .work-title {
-              font-size: clamp(1.5rem, 3vw, 2rem);
+              font-size: clamp(1.5rem, 4vw, 1.875rem);
             }
           }
         }
@@ -305,6 +335,7 @@
       li {
         .works-btn {
           padding: 1rem;
+          text-align: left;
         }
       }
     }

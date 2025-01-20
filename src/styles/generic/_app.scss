@@ -70,9 +70,13 @@ body{
     transition: opacity 0.2s ease-in;
   }
   
-  .fade-in.show {
-    opacity: 1;
-  }
+.fade-in.show {
+  opacity: 1;
+}
+::selection{
+  background-color: var(--accent-color);
+  color: var(--background);
+}
 
   // mobile functionality
 

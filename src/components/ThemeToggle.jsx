@@ -11,7 +11,7 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <button onClick={() => toggleTheme(theme, setTheme)} id='theme-toggle-btn'>
+    <button onClick={() => toggleTheme(theme, setTheme)} id='theme-toggle-btn' aria-label='Theme Toggle'>
       {theme === 'light' ? <SunIcon /> : <MoonIcon />}
     </button>
   );
