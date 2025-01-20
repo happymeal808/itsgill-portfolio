@@ -18,3 +18,8 @@ export const getPreferredTheme = () => {
   const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   return userPrefersDark ? 'dark' : 'light';
 };
+
+export const initializeTheme = () => {
+  const theme = getPreferredTheme();
+  applyTheme(theme); 
+};

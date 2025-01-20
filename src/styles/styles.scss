@@ -4,6 +4,7 @@
 @use './generic/nav';
 @use './generic/normalize';
 
+@use './components/loading';
 @use './components/about';
 @use './components/contact';
 @use './components/home';
