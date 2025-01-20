@@ -15,7 +15,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
 
-
   const loadAllImages = () =>
     new Promise((resolve) => {
       const images = Array.from(document.images); 
@@ -56,6 +55,17 @@ function App() {
     };
 
     initializeApp();
+
+    const fetchTitle = async () => {
+      const response = await fetch(`${restBase}pages?slug=works`);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.length > 0) {
+                setWorksTitle(data[0].title.rendered); // Local state in Works
+            }
+        }
+    };
+    fetchTitle();
   }, []);
 
   if (isLoading) {
@@ -75,7 +85,7 @@ function App() {
       <Works 
         selectedWork={selectedWork}
         setSelectedWork={setSelectedWork}
-        worksTitle={worksTitle} 
+        worksTitle={worksTitle}
         translateWorks={translateWorks} 
         setTranslateWorks={setTranslateWorks} 
         translateAbout={translateAbout}
