@@ -35,7 +35,7 @@ const Posts = ({ onSelectWork, worksTitle, translateWorks, setTranslateWorks, tr
   }, [restPath, metadataPath, setLoading]);
 
   return (
-    <div className={`fade-in ${isLoaded ? 'show' : ''}`}>
+    <div>
       {isLoaded && (
         <section id="works" className={translateWorks ? 'translate-up' : ''}>
           <nav className='site-navigation'>
