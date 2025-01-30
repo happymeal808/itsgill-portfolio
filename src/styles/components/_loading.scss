@@ -4,22 +4,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100dvh;
     background-color: var(--background);
     opacity: 1;
     transition: opacity 1s ease-in-out;
+    margin: auto;
 }
   
 .svg-draw {
-    height: 35vh;
-    width: auto;
+    height: 40vw;  /* Responsive based on viewport width */
+    width: 40vw;
+    max-height: 17rem;
+    max-width: 17rem;
 }
   
 .svg-draw .st0 {
     stroke: var(--accent-color);
     stroke-width: 0.5rem;
     fill: none; 
-    stroke-dasharray: 2000; // Adjust if necessary
+    stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
     animation: draw-path 3s ease-out forwards;
 }
@@ -45,5 +48,5 @@
 }
 
 .content.fade-in {
-    opacity: 1; /* ✅ Everything fades in at the same time */
+    opacity: 1;
 }
