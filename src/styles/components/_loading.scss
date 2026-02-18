@@ -1,0 +1,49 @@
+@import '../variables/vars';
+.loading-container {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: var(--background); // Matches your site theme
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+
+    &.fade-out {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.svg-draw {
+    width: clamp(100px, 20vw, 200px);
+    height: auto;
+
+    path {
+        stroke: var(--accent-color, #1C7AD9); 
+        stroke-width: 1.5;
+        fill: transparent; // Start hollow
+        
+        // This simulates the "drawing" effect
+        stroke-dasharray: 2500; 
+        stroke-dashoffset: 2500;
+        
+        animation: drawAndFill 3s ease-in-out forwards;
+    }
+}
+
+@keyframes drawAndFill {
+    0% {
+        stroke-dashoffset: 2500;
+        fill: rgba(28, 122, 217, 0); // Transparent accent color
+    }
+    70% {
+        stroke-dashoffset: 0;
+        fill: rgba(28, 122, 217, 0);
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill: var(--accent-color, #1C7AD9); // Solid accent color
+    }
+}
