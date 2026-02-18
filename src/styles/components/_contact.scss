@@ -27,7 +27,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
         .contact-heading{
-            font-size: 2.25rem;
+            font-size: clamp(1.625rem, 4vw, 2.125rem);
+            font-style: italic;
             margin: 0 auto;
             padding: 1rem 3rem 1rem 2.5rem;
             text-align: center;
@@ -58,7 +59,7 @@
                 a {
                     text-decoration: none;
                     color: var(--text-light-theme);
-                    font-size: 2.25rem;
+                    font-size: clamp(1.625rem, 4vw, 2.125rem);
                     position: relative;
                     display: inline-block;
                     padding-left: 2rem; 
@@ -76,7 +77,7 @@
 @media (min-width:31rem){
     #contact{
         .contact-links li .email::before {
-            content: 'Send me an '; 
+            content: '→'; 
             position: absolute;
             left: -7rem; 
             opacity: 0; 
@@ -85,12 +86,12 @@
         
         .contact-links li .email:hover,
         .contact-links li .email:focus {
-            padding-left: 12rem; 
+            padding-left: 3rem; 
             color: var(--accent-color);
         }
         
         .contact-links li .linkedin::before {
-            content: "Let's link up on "; 
+            content: "→"; 
             position: absolute;
             left: -7rem; 
             opacity: 0; 
@@ -99,13 +100,13 @@
         
         .contact-links li .linkedin:hover,
         .contact-links li .linkedin:focus {
-            padding-left: 14rem; 
+            padding-left: 3rem; 
             color: var(--accent-color);
 
         }
         
         .contact-links li .github::before {
-            content: "Check out my "; 
+            content: "→"; 
             position: absolute;
             left: -7rem;
             opacity: 0; 
@@ -114,7 +115,7 @@
         
         .contact-links li .github:hover,
         .contact-links li .github:focus {
-            padding-left: 13.75rem; 
+            padding-left: 3rem; 
             color: var(--accent-color);
 
         }
