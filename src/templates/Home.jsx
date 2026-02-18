@@ -2,8 +2,15 @@ import { useState, useEffect } from 'react';
 import { restBase } from '../utilities/Utilities';
 import ThemeToggle from '../components/ThemeToggle';
 import { applyTheme, getPreferredTheme } from '../utilities/theme';
+import { useNav } from '../utilities/NavContext'; // 1. Import the hook
 
-const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateAbout, translateContact, setTranslateContact }) => {
+const Home = () => { // 2. Remove all those props from the parentheses!
+    const { 
+        translateWorks, setTranslateWorks, 
+        translateAbout, setTranslateAbout, 
+        translateContact, setTranslateContact,
+        closeAll 
+    } = useNav();
     const restPath = restBase + 'pages/14';
     const [restData, setData] = useState(null);
     const [isLoaded, setLoadStatus] = useState(false);
@@ -30,40 +37,21 @@ const Home = ({ translateWorks, setTranslateWorks, translateAbout, setTranslateA
 
     const handleToggleWorks = () => {
         setTranslateWorks(!translateWorks);
-        document.getElementById('works').classList.toggle('translate-up');
+        // No document.getElementById!
     };
 
     const handleToggleAbout = () => {
         const isSmallScreen = window.innerWidth < 768;
-
         if (isSmallScreen) {
-            // Toggle both Works and About sections on small screens
             setTranslateWorks(!translateWorks);
-            document.getElementById('works').classList.toggle('translate-up');
-
             setTranslateAbout(!translateAbout);
-            document.getElementById('about').classList.toggle('translate-up');
         } else {
-            // Toggle only the About section on larger screens
             setTranslateAbout(!translateAbout);
-            document.getElementById('about').classList.toggle('translate-up');
         }
     };
 
     const handleHomeClick = () => {
-        setShowSections(!showSections);
-        if (translateWorks) {
-            setTranslateWorks(false);
-            document.getElementById('works').classList.remove('translate-up');
-        }
-        if (translateAbout) {
-            setTranslateAbout(false);
-            document.getElementById('about').classList.remove('translate-up');
-        }
-        if (translateContact) {
-            setTranslateContact(false);
-            document.getElementById('contact').classList.remove('translate-up');
-        }
+        closeAll(); // Uses the function from your NavContext
     };
 
     return (

@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react';
 import { restBase } from '../utilities/Utilities';
 import { toggleContactSection } from '../utilities/navigation';
+import { useNav } from '../utilities/NavContext'; 
 
-const Contact = ({ translateContact, setTranslateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout }) => {
+const Contact = () => {
+    // 1. Grab everything from context
+    const { 
+        translateContact, setTranslateContact, 
+        translateWorks, setTranslateWorks, 
+        translateAbout, setTranslateAbout 
+    } = useNav();
+
     const restPath = `${restBase}pages/20`;
     const [restData, setData] = useState({});
     const [isLoaded, setLoadStatus] = useState(false);
@@ -13,15 +21,10 @@ const Contact = ({ translateContact, setTranslateContact, translateWorks, setTra
                 const response = await fetch(restPath);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('Data fetched:', data); // Debugging log
                     setData(data);
                     setLoadStatus(true);
-                } else {
-                    console.error('Failed to fetch data:', response.statusText);
-                    setLoadStatus(false);
                 }
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setLoadStatus(false);
             }
         };
@@ -31,9 +34,22 @@ const Contact = ({ translateContact, setTranslateContact, translateWorks, setTra
     return (
         <div className={`fade-in ${isLoaded ? 'show' : ''}`}>
             {isLoaded && restData && restData.acf ? (
+                // 2. This class is what handles the sliding animation
                 <section id='contact' className={`section ${translateContact ? 'translate-up' : ''}`}>
                     <nav className="site-navigation">
-                        <button aria-label='Contact Button' id='contact-btn' onClick={() => toggleContactSection(setTranslateContact, translateContact, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout)}>
+                        <button 
+                            aria-label='Contact Button' 
+                            id='contact-btn' 
+                            // 3. Check the order of these arguments!
+                            onClick={() => toggleContactSection(
+                                setTranslateContact, 
+                                translateContact, 
+                                translateWorks, 
+                                setTranslateWorks, 
+                                translateAbout, 
+                                setTranslateAbout
+                            )}
+                        >
                             <h2 className='section-title'>{restData.title.rendered}</h2>
                         </button>
                     </nav>

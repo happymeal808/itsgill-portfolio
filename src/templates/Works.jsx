@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Posts from './Posts';
 import Post from './Post';
+import { useNav } from '../utilities/NavContext';
 
-const Works = ({ worksTitle, translateWorks, setTranslateWorks, translateAbout, setTranslateAbout, translateContact, setTranslateContact }) => {
+const Works = ({ worksTitle }) => {
+  const { translateWorks } = useNav(); 
   const [selectedWork, setSelectedWork] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [transitionClass, setTransitionClass] = useState('fade-in show');
@@ -14,7 +16,7 @@ const Works = ({ worksTitle, translateWorks, setTranslateWorks, translateAbout, 
       setSelectedWork(slug);
       setTransitionClass('fade-in show');
       setLoading(false);
-    }, 200); // Duration should match the CSS transition duration
+    }, 200); 
   };
 
   const handleBack = () => {
@@ -24,39 +26,33 @@ const Works = ({ worksTitle, translateWorks, setTranslateWorks, translateAbout, 
       setSelectedWork(null);
       setTransitionClass('fade-in show');
       setLoading(false);
-    }, 200); // Duration should match the CSS transition duration
+    }, 200);
   };
 
   return (
-    <div className={`background-works ${transitionClass}`}>
+    <>
       {selectedWork ? (
         <Post
           slug={selectedWork}
           onBack={handleBack}
           onSelectWork={handleSelectWork}
           worksTitle={worksTitle}
-          translateWorks={translateWorks}
-          setTranslateWorks={setTranslateWorks}
-          translateAbout={translateAbout}
-          setTranslateAbout={setTranslateAbout}
-          translateContact={translateContact}
-          setTranslateContact={setTranslateContact}
           setLoading={setLoading}
+          id="works"
+          translateWorks={translateWorks}
+          transitionClass={transitionClass}
         />
       ) : (
         <Posts
           onSelectWork={handleSelectWork}
           worksTitle={worksTitle}
-          translateWorks={translateWorks}
-          setTranslateWorks={setTranslateWorks}
-          translateAbout={translateAbout}
-          setTranslateAbout={setTranslateAbout}
-          translateContact={translateContact}
-          setTranslateContact={setTranslateContact}
           setLoading={setLoading}
+          id="works"
+          translateWorks={translateWorks}
+          transitionClass={transitionClass}
         />
       )}
-    </div>
+    </>
   );
 };
 
