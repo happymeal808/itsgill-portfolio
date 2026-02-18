@@ -1,49 +1,61 @@
 @import '../variables/vars';
+
 .loading-container {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background-color: var(--background); // Matches your site theme
+    background-color: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 1;
-    transition: opacity 1s ease-in-out;
+    visibility: visible;
+    
+    /* 1. The background waits 0.5s before it starts fading */
+    transition: opacity 1s ease-in-out 0.5s, visibility 1s 0.5s;
 
     &.fade-out {
         opacity: 0;
-        pointer-events: none;
+        visibility: hidden;
+
+        /* 2. The SVG inside fades out IMMEDIATELY (no delay) */
+        .svg-draw {
+            opacity: 0;
+            transform: scale(0.95); /* Optional: slight shrink as it fades */
+            transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+        }
     }
 }
 
 .svg-draw {
-    width: clamp(100px, 20vw, 200px);
+    width: 180px;
     height: auto;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s ease-out;
 
     path {
-        stroke: var(--accent-color, #1C7AD9); 
-        stroke-width: 1.5;
-        fill: transparent; // Start hollow
-        
-        // This simulates the "drawing" effect
-        stroke-dasharray: 2500; 
-        stroke-dashoffset: 2500;
-        
-        animation: drawAndFill 3s ease-in-out forwards;
+        fill: none;
+        stroke: var(--accent-color);
+        stroke-width: 2;
+        stroke-dasharray: 3500;
+        stroke-dashoffset: 3500;
+        /* ⬇️ Set to exactly 4 seconds */
+        animation: drawLogo 4.0s ease-in-out forwards;
     }
 }
 
-@keyframes drawAndFill {
-    0% {
-        stroke-dashoffset: 2500;
-        fill: rgba(28, 122, 217, 0); // Transparent accent color
+@keyframes drawLogo {
+    0% { 
+        stroke-dashoffset: 3500; 
+        fill: rgba(28, 122, 217, 0); 
     }
-    70% {
-        stroke-dashoffset: 0;
-        fill: rgba(28, 122, 217, 0);
+    75% {
+        stroke-dashoffset: 0; 
+        fill: rgba(28, 122, 217, 0); 
     }
-    100% {
-        stroke-dashoffset: 0;
-        fill: var(--accent-color, #1C7AD9); // Solid accent color
+    100% { 
+        stroke-dashoffset: 0; 
+        fill: var(--accent-color); 
     }
 }
