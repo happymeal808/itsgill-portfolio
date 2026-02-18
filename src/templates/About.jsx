@@ -54,7 +54,15 @@ const About = () => {
                             {restData.acf.about_paragraph && <p>{restData.acf.about_paragraph}</p>}
                             {restData.acf.personal_about_paragraph && <p>{restData.acf.personal_about_paragraph}</p>}
                         </div>
-                        {/* ... keep portrait and passion project code same ... */}
+                        {aboutData?.acf?.portrait?.source_url && (
+                    <div className='about-portrait-fun'>
+                        <img 
+                            src={aboutData.acf.portrait.source_url} 
+                            alt={aboutData.acf.portrait.alt || "Portrait"} 
+                        />
+                    </div>
+                )}
+                {aboutData?.acf?.passion_project && <p>{aboutData.acf.passion_project}</p>}
                     </div>
                 </section>
             ) : null}
